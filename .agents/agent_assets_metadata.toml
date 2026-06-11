@@ -6,3 +6,63 @@ id = "xT0qCUDrELGQLvOf2dwkI"
 uri = "file://artifacts/eula-maes/src/assets/sign.png"
 type = "image"
 title = "Eula Mae's Sign"
+
+[[generated]]
+id = "06-EzDTi__FTktM2gP4kR"
+uri = "file://artifacts/eula-maes/public/dishes/chicken-tenders.png"
+type = "image"
+title = "Chicken Tender Dinner"
+
+[[generated]]
+id = "W3keHziAd7BhQL7j7FI6G"
+uri = "file://artifacts/eula-maes/public/dishes/ribeye-sandwich.png"
+type = "image"
+title = "Ribeye Sandwich"
+
+[[generated]]
+id = "06ynJC8Pv_McKI6XJidxU"
+uri = "file://artifacts/eula-maes/public/dishes/hamburger-steak.png"
+type = "image"
+title = "Hamburger Steak"
+
+[[generated]]
+id = "Zv7y2FArpFZ1W1UgjviKh"
+uri = "file://artifacts/eula-maes/public/dishes/cheese-balls.png"
+type = "image"
+title = "Fried Cheese Balls"
+
+[[generated]]
+id = "LqlUbZkXJBIuEqan9Lw5Y"
+uri = "file://artifacts/eula-maes/public/dishes/key-lime-pie.png"
+type = "image"
+title = "Key Lime Pie"
+
+[[generated]]
+id = "wyZQ1aPeBKUDA6qI3m-7B"
+uri = "file://artifacts/eula-maes/public/dishes/biscuits.png"
+type = "image"
+title = "Biscuits Apple Butter"
+
+[[generated]]
+id = "Z9Saj9KOPmJ570W1qqLYb"
+uri = "file://artifacts/eula-maes/public/gallery/interior.png"
+type = "image"
+title = "Restaurant Interior"
+
+[[generated]]
+id = "Ert9KmAOkjjZkfv3QDxKP"
+uri = "file://artifacts/eula-maes/public/gallery/customers.png"
+type = "image"
+title = "Happy Customers"
+
+[[generated]]
+id = "jXaD06sEXzDLTF2gA-0Wr"
+uri = "file://artifacts/eula-maes/public/gallery/chef.png"
+type = "image"
+title = "Chef Plating"
+
+[[generated]]
+id = "CExptfE4HQ7YpRlgSMubL"
+uri = "file://artifacts/eula-maes/public/gallery/family.png"
+type = "image"
+title = "Family Dinner"
