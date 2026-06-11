@@ -81,7 +81,6 @@ const Navbar = () => {
         
         <div className="hidden md:flex space-x-8 text-white font-sans text-sm tracking-widest uppercase">
           <button onClick={() => handleNav('signature')} className="hover:text-[#C8392B] transition-colors">Signature Dishes</button>
-          <button onClick={() => handleNav('gallery')} className="hover:text-[#C8392B] transition-colors">Gallery</button>
           <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
           <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
           <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
@@ -102,7 +101,6 @@ const Navbar = () => {
             className="md:hidden absolute top-full left-0 w-full bg-[#1A0A00] shadow-lg flex flex-col items-center py-6 space-y-6 text-white font-sans uppercase tracking-widest text-sm"
           >
             <button onClick={() => handleNav('signature')} className="hover:text-[#C8392B] transition-colors">Signature Dishes</button>
-            <button onClick={() => handleNav('gallery')} className="hover:text-[#C8392B] transition-colors">Gallery</button>
             <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
             <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
             <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
