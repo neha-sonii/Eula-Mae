@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import heroBg from "@assets/unnamed_1781173692400.jpg";
+import heroBg from "@assets/529716721_122099979026968132_2831643898620695669_n_1781178589939.jpg";
 import signBg from "@/assets/sign.png";
 import { SiInstagram, SiFacebook } from "react-icons/si";
 import { Menu, X } from "lucide-react";
@@ -138,7 +138,7 @@ export default function Home() {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
-        <div className="absolute inset-0 z-0 bg-[#1A0A00]/60" />
+        <div className="absolute inset-0 z-0 bg-black/70" />
         
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-16">
           <motion.h1 
