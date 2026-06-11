@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "xT0qCUDrELGQLvOf2dwkI"
+uri = "file://artifacts/eula-maes/src/assets/sign.png"
+type = "image"
+title = "Eula Mae's Sign"
