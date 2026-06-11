@@ -197,7 +197,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory pb-8 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 md:pb-0 md:overflow-visible">
+          <div className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6">
             {[
               { title: "Chicken Tender Dinner", desc: "Golden crispy hand-breaded chicken tenders with dipping sauce", price: "$14", img: "/dishes/chicken-tenders.png" },
               { title: "Ribeye Sandwich", desc: "Thick ribeye steak sandwich on toasted brioche bun, melted cheese", price: "$18", img: "/dishes/ribeye-sandwich.png" },
@@ -212,7 +212,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow min-w-[80vw] sm:min-w-[300px] md:min-w-0 snap-start flex flex-col"
+                className="bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex-none w-[75vw] sm:w-[320px] lg:w-[340px] snap-start flex flex-col"
               >
                 <div className="w-full aspect-square relative bg-[#6B4C2A]/10">
                   <img src={dish.img} alt={dish.title} className="w-full h-full object-cover" loading="lazy" />
