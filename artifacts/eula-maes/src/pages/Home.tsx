@@ -247,7 +247,7 @@ export default function Home() {
               A few words from our guests
             </motion.h2>
             <p className="font-serif text-[#C8392B] text-lg md:text-2xl mt-6">
-              Rated 5<span className="text-[#C8392B] text-xl mx-1">★</span> on Google · 4 reviews
+              Rated 5<span className="text-[#C8392B] text-xl mx-1">★</span> on Google
             </p>
           </div>
 
