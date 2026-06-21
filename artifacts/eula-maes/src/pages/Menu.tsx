@@ -185,7 +185,6 @@ export default function Menu() {
                   <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Chicken Tender Dinner</h3>
                   <span className="text-[#C8392B] font-medium text-lg ml-4">$14</span>
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Hand-breaded in-house daily. Served with two sides and our signature sauce.</p>
               </div>
             </div>
             
