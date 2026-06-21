@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import heroBg from "@assets/529716721_122099979026968132_2831643898620695669_n_1781178589939.jpg";
-import signBg from "@/assets/sign.png";
+import signBg from "@assets/593549384_122136744758968132_3042940980227367526_n_1782036609528.jpg";
 import { SiInstagram, SiFacebook } from "react-icons/si";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -120,10 +120,10 @@ export default function Home() {
   };
 
   const reviews = [
-    { name: "Travis", text: "Best food in town. The chicken tenders are hand-breaded and come with the best dipping sauce. My kids ask to come here every week." },
-    { name: "Clint", text: "Gary and his team hosted our 40-person party without a hitch. The ribeye sandwich is unreal. Food was out fast and everything was hot." },
-    { name: "Emily", text: "The mason jar cheesecake is worth the trip alone. Everything tastes homemade because it is. This place is a treasure for Alexander City." },
-    { name: "John", text: "Came in on a Tuesday for lunch and it felt like a Sunday dinner at grandma's. The biscuits with apple butter are incredible. Highly recommend." }
+    { name: "Travis", text: "Best food in town. The chicken tenders are hand-breaded and come with the best dipping sauce. My kids ask to come here every week.", color: "#C8392B", img: "/gallery/dining.jpg" },
+    { name: "Clint", text: "Gary and his team hosted our 40-person party without a hitch. The ribeye sandwich is unreal. Food was out fast and everything was hot.", color: "#6B4C2A", img: "/gallery/event-table.jpg" },
+    { name: "Emily", text: "The mason jar cheesecake is worth the trip alone. Everything tastes homemade because it is. This place is a treasure for Alexander City.", color: "#A62F24", img: "/gallery/entrance.jpg" },
+    { name: "John", text: "Came in on a Tuesday for lunch and it felt like a Sunday dinner at grandma's. The biscuits with apple butter are incredible. Highly recommend.", color: "#4A3019", img: "/gallery/kitchen.jpg" }
   ];
 
   return (
@@ -265,9 +265,14 @@ export default function Home() {
                 <p className="text-[#1A0A00] mb-6 text-base md:text-lg leading-relaxed flex-grow">
                   "{review.text}"
                 </p>
-                <div className="mt-auto">
-                  <p className="font-bold text-[#1A0A00]">{review.name}</p>
-                  <p className="text-[#6B4C2A] text-sm mt-1">via Google</p>
+                <div className="mt-auto flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-2 ring-[#C8392B]/20">
+                    <img src={review.img} alt={review.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <p className="font-bold text-[#1A0A00]">{review.name}</p>
+                    <p className="text-[#6B4C2A] text-sm">via Google</p>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -298,21 +303,20 @@ export default function Home() {
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
             {[
-              "/gallery/interior.png",
-              "/gallery/customers.png",
-              "/gallery/chef.png",
-              "/gallery/family.png",
-              "/gallery/exterior.png",
-              "/gallery/bar.png",
-              "/gallery/couple.png",
-              "/gallery/feast.png"
-            ].map((src, i) => (
+              { src: "/gallery/panoramic.jpg", alt: "Dining room panoramic view" },
+              { src: "/gallery/event-table.jpg", alt: "Elegant holiday table setting" },
+              { src: "/gallery/dining.jpg", alt: "Dining room with welcome sign" },
+              { src: "/gallery/entrance.jpg", alt: "Rustic café entrance" },
+              { src: "/gallery/team.jpg", alt: "The Eula Mae's team" },
+              { src: "/gallery/kitchen.jpg", alt: "Interior with kitchen bar" },
+              { src: "/gallery/beverage.jpg", alt: "Beverage station" },
+            ].map((img, i) => (
               <div key={i} className="break-inside-avoid relative rounded-xl overflow-hidden group">
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-300" />
                 <img 
-                  src={src} 
-                  alt={`Eula Mae's Gallery ${i + 1}`} 
-                  className="w-full object-cover transform group-hover:scale-105 transition-transform duration-500 bg-[#F5EFE0]/10" 
+                  src={img.src} 
+                  alt={img.alt}
+                  className="w-full object-cover transform group-hover:scale-105 transition-transform duration-500" 
                   loading="lazy"
                 />
               </div>
@@ -378,61 +382,73 @@ export default function Home() {
       {/* Menu Teaser Section */}
       <section id="menu" className="py-16 md:py-24 px-4 sm:px-6 bg-[#1A0A00] text-[#F5EFE0]">
         <div className="container mx-auto max-w-7xl">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="font-serif text-3xl md:text-4xl lg:text-5xl text-white text-center mb-16"
-          >
-            What's Cooking
-          </motion.h2>
+          <div className="text-center mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-4"
+            >
+              What's Cooking
+            </motion.h2>
+            <p className="font-serif italic text-[#F5EFE0]/60 text-lg">Breakfast · Lunch · Dinner — all made from scratch.</p>
+          </div>
 
-          <div className="grid md:grid-cols-3 gap-12 lg:gap-16 mb-20">
-            {/* Starters Teaser */}
-            <div>
-              <h3 className="font-serif text-2xl text-white border-b border-[#6B4C2A]/40 pb-4 mb-6">Starters</h3>
-              <div className="space-y-8">
-                <div>
-                  <div className="flex justify-between items-baseline mb-2">
-                    <h4 className="font-bold text-[#FFF8EC] text-xl">Fried Cheese Balls</h4>
-                    <span className="text-[#C8392B] font-medium">$8</span>
+          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+            {[
+              {
+                label: "Breakfast",
+                hours: "Mornings",
+                photo: "/gallery/kitchen.jpg",
+                items: ["Breakfast Plate — $9", "Bologna Biscuit — $4", "Biscuits & Gravy — $4", "Beignets — $9"],
+              },
+              {
+                label: "Lunch",
+                hours: "Mon–Sat · 11am–2pm",
+                photo: "/gallery/dining.jpg",
+                items: ["Chicken Tender Dinner — $11", "Ribeye Sandwich — $12", "Fried Cheese Balls — $7", "Hamburger Steak — $10"],
+              },
+              {
+                label: "Dinner",
+                hours: "Mon–Sat · 5pm–9pm",
+                photo: "/gallery/event-table.jpg",
+                items: ["Ribeye Steak — $35", "Filet — $43", "Pork Chops — $24", "Wing & Tender Combo — $14"],
+              },
+            ].map((meal, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12 }}
+                className="rounded-2xl overflow-hidden bg-[#FFF8EC]/5 border border-white/10 hover:border-[#C8392B]/40 transition-colors group"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={meal.photo}
+                    alt={meal.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute bottom-4 left-5">
+                    <h3 className="font-serif text-2xl text-white">{meal.label}</h3>
+                    <p className="text-[#F5EFE0]/70 text-xs tracking-widest uppercase mt-0.5">{meal.hours}</p>
                   </div>
-                  <p className="text-[#F5EFE0]/80">Golden, gooey, and impossible to share.</p>
                 </div>
-              </div>
-            </div>
-
-            {/* Mains Teaser */}
-            <div>
-              <h3 className="font-serif text-2xl text-white border-b border-[#6B4C2A]/40 pb-4 mb-6">Mains</h3>
-              <div className="space-y-8">
-                <div>
-                  <div className="flex justify-between items-baseline mb-2">
-                    <h4 className="font-bold text-[#FFF8EC] text-xl">Chicken Tender Dinner</h4>
-                    <span className="text-[#C8392B] font-medium">$14</span>
-                  </div>
-                  <p className="text-[#F5EFE0]/80">Hand-breaded in-house. Served with two sides and that sauce.</p>
+                <div className="p-6 space-y-3">
+                  {meal.items.map((item, j) => (
+                    <div key={j} className="flex justify-between items-baseline text-sm border-b border-white/10 pb-2 last:border-0 last:pb-0">
+                      <span className="text-[#F5EFE0]/90">{item.split(' — ')[0]}</span>
+                      <span className="text-[#C8392B] font-medium ml-3 shrink-0">{item.split(' — ')[1]}</span>
+                    </div>
+                  ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Desserts Teaser */}
-            <div>
-              <h3 className="font-serif text-2xl text-white border-b border-[#6B4C2A]/40 pb-4 mb-6">Desserts</h3>
-              <div className="space-y-8">
-                <div>
-                  <div className="flex justify-between items-baseline mb-2">
-                    <h4 className="font-bold text-[#FFF8EC] text-xl">Key Lime Pie</h4>
-                    <span className="text-[#C8392B] font-medium">$7</span>
-                  </div>
-                  <p className="text-[#F5EFE0]/80">Tart, creamy, and made fresh daily.</p>
-                </div>
-              </div>
-            </div>
+              </motion.div>
+            ))}
           </div>
 
           <div className="text-center">
-            <p className="italic mb-10 text-base md:text-lg">Explore our full scratch-made menu.</p>
+            <p className="italic mb-8 text-base md:text-lg text-[#F5EFE0]/70">Explore our full scratch-made menu — Breakfast through Dinner.</p>
             <Button 
               onClick={() => setLocation('/menu')}
               size="lg"

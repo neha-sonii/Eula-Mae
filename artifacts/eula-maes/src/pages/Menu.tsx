@@ -12,9 +12,7 @@ const Navbar = () => {
   const [, setLocation] = useLocation();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -25,47 +23,43 @@ const Navbar = () => {
       setLocation('/menu');
     } else {
       setLocation('/');
-      // Need a slight delay to allow navigation to complete before scrolling
       setTimeout(() => {
         const el = document.getElementById(target);
-        if (el) {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
+        if (el) el.scrollIntoView({ behavior: "smooth" });
       }, 100);
     }
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-colors duration-300 ${scrolled ? 'bg-[#1A0A00] shadow-md py-3' : 'bg-transparent py-4'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-colors duration-300 ${scrolled ? 'bg-[#1A0A00] shadow-md py-3' : 'bg-[#1A0A00] py-4'}`}>
       <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
         <div className="cursor-pointer" onClick={() => setLocation('/')}>
           <EulaLogo size="sm" variant="light" className="scale-75 origin-left" />
         </div>
-        
         <div className="hidden md:flex space-x-8 text-white font-sans text-sm tracking-widest uppercase">
+          <button onClick={() => handleNav('signature')} className="hover:text-[#C8392B] transition-colors">Signature Dishes</button>
           <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
           <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
-          <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
-          <button onClick={() => handleNav('reserve')} className="hover:text-[#C8392B] transition-colors">Reserve</button>
+          <button onClick={() => handleNav('menu')} className="text-[#C8392B]">Menu</button>
+          <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-5 py-2 rounded-full transition-colors">Reserve</button>
         </div>
-
         <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={28} /> : <MenuIcon size={28} />}
         </button>
       </div>
-
       <AnimatePresence>
         {menuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             className="md:hidden absolute top-full left-0 w-full bg-[#1A0A00] shadow-lg flex flex-col items-center py-6 space-y-6 text-white font-sans uppercase tracking-widest text-sm"
           >
+            <button onClick={() => handleNav('signature')} className="hover:text-[#C8392B] transition-colors">Signature Dishes</button>
             <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
             <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
-            <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
-            <button onClick={() => handleNav('reserve')} className="hover:text-[#C8392B] transition-colors">Reserve</button>
+            <button onClick={() => handleNav('menu')} className="text-[#C8392B]">Menu</button>
+            <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-6 py-2.5 rounded-full transition-colors">Reserve</button>
           </motion.div>
         )}
       </AnimatePresence>
@@ -73,242 +67,321 @@ const Navbar = () => {
   );
 };
 
+type TabId = 'breakfast' | 'lunch' | 'dinner' | 'catering';
+
+const MenuItem = ({ name, desc, price, note }: { name: string; desc?: string; price: string; note?: string }) => (
+  <div className="flex items-start justify-between gap-4 py-5 border-b border-[#6B4C2A]/10 last:border-0">
+    <div className="flex-1">
+      <h4 className="font-serif font-bold text-lg text-[#1A0A00] leading-snug">{name}</h4>
+      {desc && <p className="text-[#6B4C2A] text-sm mt-1 leading-relaxed">{desc}</p>}
+      {note && <p className="text-[#6B4C2A]/70 text-xs mt-1 italic">{note}</p>}
+    </div>
+    <span className="text-[#C8392B] font-semibold text-base shrink-0 pt-0.5">{price}</span>
+  </div>
+);
+
+const SectionHeader = ({ title }: { title: string }) => (
+  <h3 className="font-serif text-2xl md:text-3xl text-[#1A0A00] mt-12 mb-2 first:mt-0">{title}</h3>
+);
+
+const SidesBox = () => (
+  <div className="border border-[#6B4C2A]/30 rounded-xl p-6 mt-8">
+    <h4 className="font-serif text-xl text-[#1A0A00] mb-4 text-center tracking-wide uppercase text-sm font-bold">Sides</h4>
+    <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-[#6B4C2A] text-sm">
+      {['Fries','Green Beans','Roasted Potatoes','Okra','Macaroni & Cheese','Baked Beans','Salad (House or Spring)'].map(s => (
+        <span key={s} className="py-0.5">{s}</span>
+      ))}
+    </div>
+  </div>
+);
+
+const BeveragesBox = () => (
+  <div className="mt-12 grid md:grid-cols-2 gap-6">
+    <div className="bg-[#FFF8EC] rounded-xl p-6">
+      <div className="flex justify-between items-baseline mb-4">
+        <h4 className="font-serif text-lg font-bold text-[#1A0A00] uppercase tracking-wide text-sm">Beverages</h4>
+        <span className="text-[#C8392B] font-semibold">$3.00</span>
+      </div>
+      <div className="text-[#6B4C2A] text-sm space-y-1">
+        {['Sweet Tea','Unsweet Tea','Lemonade','Orange Juice','Coke','Diet Coke','Sprite','Dr. Pepper','Coke Zero','Mello Yello','Strawberry Fanta','Blue Powerade'].map(b => (
+          <p key={b}>{b}</p>
+        ))}
+      </div>
+    </div>
+    <div className="bg-[#FFF8EC] rounded-xl p-6">
+      <div className="flex justify-between items-baseline mb-4">
+        <h4 className="font-serif text-lg font-bold text-[#1A0A00] uppercase tracking-wide text-sm">Hot Drinks</h4>
+        <span className="text-[#C8392B] font-semibold">$2.00</span>
+      </div>
+      <div className="text-[#6B4C2A] text-sm space-y-1">
+        <p>Coffee</p>
+        <p>Hot Chocolate</p>
+      </div>
+    </div>
+  </div>
+);
+
 export default function Menu() {
   const [, setLocation] = useLocation();
+  const [activeTab, setActiveTab] = useState<TabId>('lunch');
 
-  const scrollToCategory = (id: string) => {
-    const el = document.getElementById(`category-${id}`);
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.scrollY - 100;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  };
+  const tabs: { id: TabId; label: string }[] = [
+    { id: 'breakfast', label: 'Breakfast' },
+    { id: 'lunch', label: 'Lunch' },
+    { id: 'dinner', label: 'Dinner' },
+    { id: 'catering', label: 'Catering' },
+  ];
 
   return (
     <div className="bg-[#F5EFE0] min-h-screen text-[#1A0A00] font-sans selection:bg-[#C8392B] selection:text-white">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-24 md:pt-48 md:pb-32 flex flex-col items-center justify-center text-center px-4 sm:px-6 bg-[#1A0A00] text-white">
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 md:pt-44 md:pb-28 flex flex-col items-center justify-center text-center px-4 sm:px-6 bg-[#1A0A00] text-white">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#6B4C2A] via-[#1A0A00] to-[#1A0A00]" />
-        
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-serif text-5xl md:text-6xl lg:text-[80px] leading-tight tracking-wide mb-6"
+            className="font-serif text-5xl md:text-6xl lg:text-[80px] leading-tight tracking-wide mb-4"
           >
             Our Menu
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-[#F5EFE0] text-lg md:text-xl font-medium tracking-wide mb-10 italic font-serif"
+            className="text-[#F5EFE0] text-lg md:text-xl font-medium tracking-wide mb-8 italic font-serif"
           >
             Made from scratch. Every single day.
           </motion.p>
-          <button onClick={() => setLocation('/')} className="text-[#C8392B] hover:text-white transition-colors flex items-center space-x-2">
-            <span>←</span> <span>Back to Home</span>
+          <button onClick={() => setLocation('/')} className="text-[#C8392B] hover:text-white transition-colors flex items-center space-x-2 text-sm tracking-widest uppercase font-sans">
+            <span>←</span><span>Back to Home</span>
           </button>
         </div>
       </section>
 
-      {/* Category Tabs */}
-      <div className="sticky top-[80px] md:top-[90px] z-40 bg-[#F5EFE0]/90 backdrop-blur-md border-b border-[#6B4C2A]/20">
+      {/* Tab Bar */}
+      <div className="sticky top-0 z-40 bg-[#F5EFE0]/95 backdrop-blur-md border-b border-[#6B4C2A]/20 shadow-sm">
         <div className="container mx-auto px-4 overflow-x-auto scrollbar-hide">
-          <div className="flex justify-start md:justify-center space-x-8 py-4 font-serif text-lg md:text-xl text-[#6B4C2A] whitespace-nowrap min-w-max">
-            <button onClick={() => scrollToCategory('starters')} className="hover:text-[#C8392B] transition-colors">Starters</button>
-            <button onClick={() => scrollToCategory('mains')} className="hover:text-[#C8392B] transition-colors">Mains</button>
-            <button onClick={() => scrollToCategory('desserts')} className="hover:text-[#C8392B] transition-colors">Desserts</button>
-            <button onClick={() => scrollToCategory('sides')} className="hover:text-[#C8392B] transition-colors">Sides & Biscuits</button>
+          <div className="flex justify-start md:justify-center gap-1 py-3 whitespace-nowrap min-w-max">
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-6 py-2.5 rounded-full font-sans text-sm tracking-widest uppercase transition-all ${
+                  activeTab === tab.id
+                    ? 'bg-[#C8392B] text-white shadow-md'
+                    : 'text-[#6B4C2A] hover:text-[#C8392B]'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-16 md:py-24 space-y-24 max-w-5xl">
-        {/* Starters */}
-        <section id="category-starters">
-          <h2 className="font-serif text-3xl md:text-4xl text-[#1A0A00] border-b border-[#6B4C2A]/20 pb-4 mb-8">Starters</h2>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 relative overflow-hidden">
-                <img src="/dishes/cheese-balls.png" alt="Fried Cheese Balls" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Fried Cheese Balls</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$8</span>
-                </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Golden, gooey, and impossible to share. Served with our house-made dipping sauce.</p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 flex items-center justify-center text-[#6B4C2A]/40 font-serif italic">
-                Eula's
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Eula Mae's Special</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$12</span>
-                </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">The dish that started it all. Ask your server about today's preparation.</p>
-              </div>
-            </div>
+      {/* Menu Content */}
+      <div className="container mx-auto px-4 sm:px-6 py-12 md:py-20 max-w-3xl">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+          >
 
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-               <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 flex items-center justify-center text-[#6B4C2A]/40 font-serif italic">
-                Eula's
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Wings</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$10</span>
+            {/* ── BREAKFAST ── */}
+            {activeTab === 'breakfast' && (
+              <div>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Served mornings — ask about current hours.</p>
+                <div className="divide-y-0">
+                  <MenuItem name="Breakfast Plate" price="$9.00" desc="Two eggs cooked to order with your choice of bacon or sausage patty. Served with a biscuit or toast." />
+                  <MenuItem name="Bologna Biscuit" price="$4.00" desc="Fried bologna on a homemade biscuit." note="+ Add cheese $1.00" />
+                  <MenuItem name="Biscuits & Gravy" price="$4.00" desc="Homemade biscuits smothered in sausage gravy." note="+ Extra biscuit $2.00" />
+                  <MenuItem name="Homemade Biscuits" price="$4.00" desc="Your choice of sausage or bacon." note="+ Add cheese $1.00  · + Add egg $1.00" />
+                  <MenuItem name="BLT" price="$6.00" desc="Bacon, lettuce, and tomato on toast." note="+ Add cheese $1.00" />
+                  <MenuItem name="Beignets" price="$9.00" desc="Three classic beignets cooked golden brown with powdered sugar." note="+ Choice of chocolate or caramel $1.00" />
+                  <MenuItem name="Breakfast Sandwich" price="$9.00" desc="Bacon or sausage, egg on toast or bun." note="+ Add cheese $1.00" />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Crispy, sauced to your liking, and worth every single napkin.</p>
+                <BeveragesBox />
               </div>
-            </div>
-          </div>
-        </section>
+            )}
 
-        {/* Mains */}
-        <section id="category-mains">
-          <h2 className="font-serif text-3xl md:text-4xl text-[#1A0A00] border-b border-[#6B4C2A]/20 pb-4 mb-8">Mains</h2>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 relative overflow-hidden">
-                <img src="/dishes/chicken-tenders.png" alt="Chicken Tender Dinner" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Chicken Tender Dinner</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$14</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 relative overflow-hidden">
-                <img src="/dishes/ribeye-sandwich.png" alt="Ribeye Sandwich" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Ribeye Sandwich</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$18</span>
-                </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">A half-pound of premium ribeye on a toasted brioche bun. No substitutions.</p>
-              </div>
-            </div>
+            {/* ── LUNCH ── */}
+            {activeTab === 'lunch' && (
+              <div>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 11am – 2pm</p>
 
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 relative overflow-hidden">
-                <img src="/dishes/hamburger-steak.png" alt="Hamburger Steak" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Hamburger Steak</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$15</span>
+                <SectionHeader title="Starters" />
+                <div>
+                  <MenuItem name="Homemade Fried Cheese Balls" price="$7.00" desc="Crispy golden brown cheese balls with a gooey pepper jack cheese center and spicy marinara sauce." />
+                  <MenuItem name="Eula Mae's Special" price="$14.00" desc="Conecuh sausage with homemade pimento cheese, wickles pickles. Served with pita bread." />
+                  <MenuItem name="Wings" price="$9.00" desc="Our classic crispy fried wings hand tossed. Choice of HOT, MILD, REGULAR BBQ, SWEET HEAT BBQ, LEMON PEPPER, OR GARLIC PARM. Served with ranch or Eula Mae's Sauce." />
+                  <MenuItem name="Fried Okra" price="$6.00" desc="Breaded and deep fried until golden brown." />
+                  <MenuItem name="Fries" price="$6.00" desc="Golden brown fries. Add lemon pepper or Eula Mae's sprinkles." />
+                  <MenuItem name="Pimento Cheese & Crackers" price="$8.00" desc="Homemade pimento cheese served with your choice of crackers or pitta bread." />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">A true Southern classic, smothered in rich onion gravy.</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Desserts */}
-        <section id="category-desserts">
-          <h2 className="font-serif text-3xl md:text-4xl text-[#1A0A00] border-b border-[#6B4C2A]/20 pb-4 mb-8">Desserts</h2>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 relative overflow-hidden">
-                <img src="/dishes/key-lime-pie.png" alt="Key Lime Pie" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Key Lime Pie</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$7</span>
+                <SectionHeader title="Entrees" />
+                <div>
+                  <MenuItem name="Chicken Tender Dinner" price="$11.00" desc="4 Tenders fried/grilled with a choice of sauce and french fries." />
+                  <MenuItem name="Chicken Tender Snack" price="$9.00" desc="2 Tenders fried/grilled with a choice of sauce and french fries." />
+                  <MenuItem name="Wing Basket – Fried" price="$12.00" desc="10 Classic crispy fried wings hand tossed. Choice of HOT, MILD, REGULAR BBQ, SWEET HEAT BBQ, LEMON PEPPER, OR GARLIC PARM, OR HONEY MUSTARD." />
+                  <MenuItem name="Wing & Chicken Tender Combo" price="$14.00" desc="5 Wings and 3 Tenders with fries and your choice of sauce." />
+                  <MenuItem name="Ribeye Sandwich" price="$12.00" desc="Tender marbled ribeye served on a brioche bun." />
+                  <MenuItem name="Cheeseburger / Hamburger" price="$12.00" desc="2.3 OZ Handmade patties served with melted American cheese, fresh lettuce, onion, and tomato." note="+ Add homemade pimento cheese $2.00" />
+                  <MenuItem name="Hamburger Steak" price="$10 / $13" desc="6 OZ or 8 OZ Ground beef patty served with brown gravy and sautéed onions." />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Tart, creamy, and made fresh daily with a graham cracker crust.</p>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 flex items-center justify-center text-[#6B4C2A]/40 font-serif italic">
-                Eula's
+                <BeveragesBox />
               </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Red Velvet Cake</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$6</span>
+            )}
+
+            {/* ── DINNER ── */}
+            {activeTab === 'dinner' && (
+              <div>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 5pm – 9pm · Entrees served with two sides.</p>
+
+                <SectionHeader title="Starters" />
+                <div>
+                  <MenuItem name="Homemade Fried Cheese Balls" price="$7.00" desc="Crispy golden brown cheese balls with a gooey pepper jack cheese center and spicy marinara sauce." />
+                  <MenuItem name="Eula Mae's Special" price="$14.00" desc="Conecuh sausage with homemade pimento cheese, wickles pickles. Served with pita bread." />
+                  <MenuItem name="Wings" price="$9.00" desc="Classic crispy fried wings hand tossed — HOT, MILD, REGULAR BBQ, SWEET HEAT BBQ, LEMON PEPPER, OR GARLIC PARM." />
+                  <MenuItem name="Fried Okra" price="$8.00" desc="Breaded and deep fried until golden brown." />
+                  <MenuItem name="Fries" price="$6.00" desc="Golden brown fries. Add lemon pepper or Eula Mae's sprinkles." />
+                  <MenuItem name="Pimento Cheese & Crackers" price="$8.00" desc="Homemade pimento cheese served with your choice of crackers or pitta bread." />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Three layers. Rich cream cheese frosting. Grandma-level perfection.</p>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-               <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 flex items-center justify-center text-[#6B4C2A]/40 font-serif italic">
-                Eula's
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Mason Jar Cheesecake</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$8</span>
+                <SectionHeader title="Salads" />
+                <div>
+                  <MenuItem name="House Salad" price="$5.00" desc="Lettuce, tomato, onions, and your choice of ranch, thousand island, blue cheese, honey mustard, or raspberry vinaigrette." />
+                  <MenuItem name="+ Add Ribeye Steak or Porkchop" price="$7.00" />
+                  <MenuItem name="Spring Salad" price="$5.00" desc="Spring mix with strawberries, blackberries, raspberries, and feta cheese with a raspberry vinaigrette." />
+                  <MenuItem name="+ Add Fried or Grilled Chicken" price="$5.00" />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Our famous creamy cheesecake served beautifully in a glass mason jar.</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Sides & Biscuits */}
-        <section id="category-sides">
-          <h2 className="font-serif text-3xl md:text-4xl text-[#1A0A00] border-b border-[#6B4C2A]/20 pb-4 mb-8">Sides & Biscuits</h2>
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 relative overflow-hidden">
-                <img src="/dishes/biscuits.png" alt="Fresh Biscuits w/ Apple Butter" className="w-full h-full object-cover" loading="lazy" />
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Fresh Biscuits w/ Apple Butter</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$4</span>
+                <SectionHeader title="Entrees" />
+                <p className="text-[#6B4C2A] text-sm italic mb-4">All entrees served with two sides.</p>
+                <div>
+                  <MenuItem name="Cheeseburger / Hamburger" price="$11.00" desc="2.3 OZ Handmade patties with melted American cheese, fresh lettuce, onion, and tomato." note="+ Add homemade pimento cheese $2.00" />
+                  <MenuItem name="Hamburger Steak" price="$10 / $13" desc="6 OZ or 8 OZ Ground beef patty served with brown gravy and sautéed onions." />
+                  <MenuItem name="Chicken Tender Dinner" price="$11.00" desc="4 Tenders fried/grilled with a choice of sauce and french fries." />
+                  <MenuItem name="Chicken Tender Snack" price="$9.00" desc="2 Tenders fried/grilled with a choice of sauce and french fries." />
+                  <MenuItem name="Wing Basket – Fried" price="$12.00" desc="10 Classic crispy fried wings — HOT, MILD, REGULAR BBQ, SWEET HEAT BBQ, LEMON PEPPER, OR GARLIC PARM, OR HONEY MUSTARD." />
+                  <MenuItem name="Wing & Chicken Tender Combo" price="$14.00" desc="5 Wings and 3 Tenders with fries and your choice of sauce." />
+                  <MenuItem name="Ribeye Sandwich" price="$12.00" desc="Tender marbled ribeye served on a brioche bun." />
+                  <MenuItem name="Ribeye Steak" price="$35.00" desc="14–16 OZ Tender handcut aged ribeye." />
+                  <MenuItem name="Filet" price="$43.00" desc="7–9 OZ Tender handcut filet." />
+                  <MenuItem name="Pork Chops" price="$24.00" desc="Two grilled to perfection boneless pork chops." />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Made every morning. Served piping hot with our sweet apple butter.</p>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-              <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 flex items-center justify-center text-[#6B4C2A]/40 font-serif italic">
-                Eula's
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Mashed Potatoes</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$4</span>
+                <SidesBox />
+
+                <SectionHeader title="Kids Meals" />
+                <p className="text-[#6B4C2A] text-sm italic mb-4">With fries and a drink.</p>
+                <div>
+                  <MenuItem name="Burger" price="$8.00" desc="With fries and a drink." />
+                  <MenuItem name="Chicken Tenders" price="$8.00" desc="2 Fried chicken tenders with fries and a drink." />
+                  <MenuItem name="Kids Wing Basket" price="$8.00" desc="4 Fried chicken wings with fries and a drink. Your choice of sauce." />
+                  <MenuItem name="Grilled Cheese" price="$7.00" desc="With fries and a drink." />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Creamy, buttery, and whipped to perfection.</p>
-              </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-6 bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm p-6">
-               <div className="w-full sm:w-32 sm:h-32 aspect-square bg-[#6B4C2A]/10 rounded-lg flex-shrink-0 flex items-center justify-center text-[#6B4C2A]/40 font-serif italic">
-                Eula's
-              </div>
-              <div className="flex flex-col justify-center flex-grow">
-                <div className="flex justify-between items-baseline mb-2">
-                  <h3 className="font-serif font-bold text-xl text-[#1A0A00]">Seasonal Vegetables</h3>
-                  <span className="text-[#C8392B] font-medium text-lg ml-4">$4</span>
+                <SectionHeader title="Desserts" />
+                <div>
+                  <MenuItem name="Key Lime Pie" price="$5.00" />
+                  <MenuItem name="Red Velvet" price="$5.00" />
+                  <MenuItem name="Tiramisu" price="$5.00" />
+                  <MenuItem name="Peanut Butter Pie" price="$5.00" />
+                  <MenuItem name="Dessert Trio" price="$15.00" desc="Choice of any three: key lime, red velvet, or tiramisu." />
+                  <MenuItem name="Homemade Fried Apple or Pecan Pies" price="Market" />
+                  <MenuItem name="Homemade Strawberry Cake" price="Market" />
+                  <MenuItem name="Homemade Pound Cake" price="Market" />
                 </div>
-                <p className="text-[#6B4C2A] leading-relaxed text-sm md:text-base">Fresh from the market, prepared simply to let the flavors shine.</p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <div className="text-center pt-16">
-          <h3 className="font-serif text-3xl mb-4 text-[#1A0A00]">Can't decide? Let us surprise you.</h3>
-          <Button 
+                <BeveragesBox />
+              </div>
+            )}
+
+            {/* ── CATERING ── */}
+            {activeTab === 'catering' && (
+              <div>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Events, parties, and gatherings — big or small. Call us to plan yours.</p>
+
+                <SectionHeader title="Breakfast" />
+                <div className="grid sm:grid-cols-2 gap-x-12">
+                  <div>
+                    {['Meats (Bacon, Sausage, Ribeye, or Bologna)','Eggs','Beignets','Mini Pancakes'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                  <div>
+                    {['Biscuits & Gravy','Homemade Biscuits'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                </div>
+
+                <SectionHeader title="Starters & Stations" />
+                <div className="grid sm:grid-cols-2 gap-x-12">
+                  <div>
+                    {['Homemade Fried Cheese Balls','Eula Mae\'s Special','Wings','Fries','Pimento Cheese & Crackers / Pita Bread'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                  <div>
+                    {['Fruit Trays','Charcuterie Trays (can be individually wrapped)','Grazing Tables'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                </div>
+
+                <SectionHeader title="Entrees" />
+                <div className="grid sm:grid-cols-2 gap-x-12">
+                  <div>
+                    {['Chicken Tenders (Grilled or Fried)','Wings','Mini Ribeye Sandwiches','Cheeseburgers','Hamburgers','BBQ'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                  <div>
+                    {['Filets','Ribeyes','Pork Chops','Hamburger Steak','Shrimp Boil'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                </div>
+
+                <SectionHeader title="Desserts" />
+                <div className="grid sm:grid-cols-2 gap-x-12">
+                  <div>
+                    {['Key Lime Pie','Red Velvet','Tiramisu','Peanut Butter Pie'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                  <div>
+                    {['Homemade Fried Apple or Pecan Pies','Homemade Strawberry Cake','Homemade Pound Cake'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-12 bg-[#1A0A00] rounded-2xl p-8 text-center text-white">
+                  <h3 className="font-serif text-2xl md:text-3xl mb-3">Planning an event?</h3>
+                  <p className="text-[#F5EFE0]/80 mb-6 font-serif italic">We'd love to be a part of it. Give us a call to talk through the details.</p>
+                  <a href="tel:2563924999" className="inline-block bg-[#C8392B] hover:bg-[#A62F24] text-white rounded-full px-8 py-4 text-lg font-medium tracking-wide transition-all shadow-md hover:shadow-lg">
+                    📞 (256) 392-4999
+                  </a>
+                </div>
+              </div>
+            )}
+
+          </motion.div>
+        </AnimatePresence>
+
+        <div className="text-center pt-20 pb-4">
+          <p className="font-serif italic text-[#6B4C2A] text-lg mb-6">Can't decide? Let us surprise you.</p>
+          <Button
             onClick={() => {
               setLocation('/');
               setTimeout(() => {
@@ -317,7 +390,7 @@ export default function Menu() {
               }, 100);
             }}
             size="lg"
-            className="mt-6 bg-[#C8392B] hover:bg-[#A62F24] text-white w-full sm:w-auto rounded-full px-10 py-7 text-lg font-medium tracking-wide transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+            className="bg-[#C8392B] hover:bg-[#A62F24] text-white w-full sm:w-auto rounded-full px-10 py-7 text-lg font-medium tracking-wide transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
           >
             Reserve Your Table <span className="ml-2 font-serif text-xl">→</span>
           </Button>
@@ -330,17 +403,14 @@ export default function Menu() {
           <div className="mb-8">
             <EulaLogo variant="light" size="md" />
           </div>
-          
           <div className="text-[#F5EFE0]/80 space-y-2 mb-8 text-lg">
             <p>110 Calhoun St, Suite 105</p>
             <p>Alexander City, AL 35010</p>
             <p>(256) 392-4999</p>
           </div>
-
           <p className="font-serif italic text-[#6B4C2A] text-xl mb-10 max-w-md">
             "Named for a woman who cooked with her whole heart."
           </p>
-
           <div className="flex space-x-6 mb-12">
             <a href="#" className="text-[#F5EFE0]/60 hover:text-[#C8392B] transition-colors">
               <SiInstagram size={24} />
@@ -349,7 +419,6 @@ export default function Menu() {
               <SiFacebook size={24} />
             </a>
           </div>
-
           <div className="text-[#F5EFE0]/40 text-sm">
             © {new Date().getFullYear()} Eula Mae's. All rights reserved.
           </div>
