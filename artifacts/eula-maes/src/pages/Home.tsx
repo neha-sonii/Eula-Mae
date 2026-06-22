@@ -154,7 +154,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="text-[#F5EFE0] text-base md:text-xl font-medium tracking-wide mb-10"
           >
-            Breakfast · Lunch · Dinner · Events — Alexander City, AL
+            Quality Food, cooked with Love · Alexander City, AL
           </motion.p>
           
           <motion.div
@@ -445,26 +445,20 @@ export default function Home() {
             >
               What's Cooking
             </motion.h2>
-            <p className="font-serif italic text-[#F5EFE0]/60 text-lg">Breakfast · Lunch · Dinner — all made from scratch.</p>
+            <p className="font-serif italic text-[#F5EFE0]/60 text-lg">Lunch · Dinner — all made from scratch.</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-16 max-w-3xl mx-auto w-full">
             {[
               {
-                label: "Breakfast",
-                hours: "Mornings",
-                photo: "/gallery/kitchen.jpg",
-                items: ["Breakfast Plate — $9", "Bologna Biscuit — $4", "Biscuits & Gravy — $4", "Beignets — $9"],
-              },
-              {
                 label: "Lunch",
-                hours: "Mon–Sat · 11am–2pm",
+                hours: "Mon–Sat · 11am–3pm",
                 photo: "/gallery/dining.jpg",
                 items: ["Chicken Tender Dinner — $11", "Ribeye Sandwich — $12", "Fried Cheese Balls — $7", "Hamburger Steak — $10"],
               },
               {
                 label: "Dinner",
-                hours: "Mon–Sat · 5pm–9pm",
+                hours: "Mon–Sat · 4:30pm–9pm",
                 photo: "/gallery/event-table.jpg",
                 items: ["Ribeye Steak — $35", "Filet — $43", "Pork Chops — $24", "Wing & Tender Combo — $14"],
               },
@@ -502,7 +496,7 @@ export default function Home() {
           </div>
 
           <div className="text-center">
-            <p className="italic mb-8 text-base md:text-lg text-[#F5EFE0]/70">Explore our full scratch-made menu — Breakfast through Dinner.</p>
+            <p className="italic mb-8 text-base md:text-lg text-[#F5EFE0]/70">Explore our full scratch-made menu — Lunch through Dinner.</p>
             <Button 
               onClick={() => setLocation('/menu')}
               size="lg"
@@ -530,8 +524,8 @@ export default function Home() {
               <div className="space-y-6 text-[#1A0A00] text-base md:text-lg">
                 <div>
                   <h4 className="font-bold mb-2">Hours</h4>
-                  <p>Lunch: Mon–Sat 11am–2pm</p>
-                  <p>Dinner: Mon–Sat 5pm–9pm</p>
+                  <p>Lunch: Mon–Sat 11:00am – 3:00pm</p>
+                  <p>Dinner: Mon–Sat 4:30pm – 9:00pm</p>
                   <p className="text-[#C8392B] font-medium">Sunday Closed</p>
                 </div>
                 

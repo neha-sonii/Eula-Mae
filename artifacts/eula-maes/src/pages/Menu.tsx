@@ -67,7 +67,7 @@ const Navbar = () => {
   );
 };
 
-type TabId = 'breakfast' | 'lunch' | 'dinner' | 'catering';
+type TabId = 'lunch' | 'dinner' | 'catering';
 
 const MenuItem = ({ name, desc, price, note }: { name: string; desc?: string; price: string; note?: string }) => (
   <div className="flex items-start justify-between gap-4 py-5 border-b border-[#6B4C2A]/10 last:border-0">
@@ -126,7 +126,6 @@ export default function Menu() {
   const [activeTab, setActiveTab] = useState<TabId>('lunch');
 
   const tabs: { id: TabId; label: string }[] = [
-    { id: 'breakfast', label: 'Breakfast' },
     { id: 'lunch', label: 'Lunch' },
     { id: 'dinner', label: 'Dinner' },
     { id: 'catering', label: 'Catering' },
@@ -193,27 +192,10 @@ export default function Menu() {
             transition={{ duration: 0.3 }}
           >
 
-            {/* ── BREAKFAST ── */}
-            {activeTab === 'breakfast' && (
-              <div>
-                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Served mornings — ask about current hours.</p>
-                <div className="divide-y-0">
-                  <MenuItem name="Breakfast Plate" price="$9.00" desc="Two eggs cooked to order with your choice of bacon or sausage patty. Served with a biscuit or toast." />
-                  <MenuItem name="Bologna Biscuit" price="$4.00" desc="Fried bologna on a homemade biscuit." note="+ Add cheese $1.00" />
-                  <MenuItem name="Biscuits & Gravy" price="$4.00" desc="Homemade biscuits smothered in sausage gravy." note="+ Extra biscuit $2.00" />
-                  <MenuItem name="Homemade Biscuits" price="$4.00" desc="Your choice of sausage or bacon." note="+ Add cheese $1.00  · + Add egg $1.00" />
-                  <MenuItem name="BLT" price="$6.00" desc="Bacon, lettuce, and tomato on toast." note="+ Add cheese $1.00" />
-                  <MenuItem name="Beignets" price="$9.00" desc="Three classic beignets cooked golden brown with powdered sugar." note="+ Choice of chocolate or caramel $1.00" />
-                  <MenuItem name="Breakfast Sandwich" price="$9.00" desc="Bacon or sausage, egg on toast or bun." note="+ Add cheese $1.00" />
-                </div>
-                <BeveragesBox />
-              </div>
-            )}
-
             {/* ── LUNCH ── */}
             {activeTab === 'lunch' && (
               <div>
-                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 11am – 2pm</p>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 11:00am – 3:00pm</p>
 
                 {/* Daily Specials Banner */}
                 <div className="mb-10 rounded-2xl overflow-hidden border border-[#C8392B]/20 bg-[#1A0A00]">
@@ -268,7 +250,7 @@ export default function Menu() {
             {/* ── DINNER ── */}
             {activeTab === 'dinner' && (
               <div>
-                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 5pm – 9pm · Entrees served with two sides.</p>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 4:30pm – 9:00pm · Entrees served with two sides.</p>
 
                 <SectionHeader title="Starters" />
                 <div>
