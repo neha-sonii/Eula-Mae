@@ -213,8 +213,8 @@ export default function Home() {
                 transition={{ delay: i * 0.1 }}
                 className="bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex-none w-[75vw] sm:w-[320px] lg:w-[340px] snap-start flex flex-col"
               >
-                <div className="w-full aspect-square relative bg-[#6B4C2A]/10">
-                  <img src={dish.img} alt={dish.title} className="w-full h-full object-cover" loading="lazy" />
+                <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#6B4C2A]/10">
+                  <img src={dish.img} alt={dish.title} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-2">
