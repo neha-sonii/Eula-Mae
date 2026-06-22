@@ -215,6 +215,31 @@ export default function Menu() {
               <div>
                 <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Mon – Sat · 11am – 2pm</p>
 
+                {/* Daily Specials Banner */}
+                <div className="mb-10 rounded-2xl overflow-hidden border border-[#C8392B]/20 bg-[#1A0A00]">
+                  <div className="px-6 pt-6 pb-3">
+                    <h3 className="font-serif text-2xl text-white mb-1">Daily Lunch Specials</h3>
+                    <p className="text-[#F5EFE0]/50 text-sm italic mb-5">Mon – Fri · 11am – 2pm · Includes drink</p>
+                    <div className="grid sm:grid-cols-2 gap-3 mb-4">
+                      {[
+                        { day: "Mon", item: "Ribeye Sandwich", note: "with Fries & Drink", price: "$11" },
+                        { day: "Tue", item: "6oz Hamburger Steak", note: "with Fries & Drink", price: "$9" },
+                        { day: "Wed", item: "Chicken Salad or Pimento Cheese", note: "with Crackers & Drink", price: "$7" },
+                        { day: "Fri", item: "Chicken Tender Snack", note: "with Fries & Drink", price: "$8" },
+                      ].map(s => (
+                        <div key={s.day} className="flex items-center gap-3 bg-white/5 rounded-lg px-4 py-3">
+                          <span className="bg-[#C8392B] text-white text-xs font-bold tracking-wider px-2 py-1 rounded shrink-0">{s.day}</span>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-white font-serif font-semibold text-sm leading-tight">{s.item}</p>
+                            <p className="text-[#F5EFE0]/40 text-xs">{s.note}</p>
+                          </div>
+                          <span className="text-[#C8392B] font-bold text-base shrink-0">{s.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
                 <SectionHeader title="Starters" />
                 <div>
                   <MenuItem name="Homemade Fried Cheese Balls" price="$7.00" desc="Crispy golden brown cheese balls with a gooey pepper jack cheese center and spicy marinara sauce." />
@@ -309,6 +334,18 @@ export default function Menu() {
             {activeTab === 'catering' && (
               <div>
                 <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Events, parties, and gatherings — big or small. Call us to plan yours.</p>
+
+                {/* Catering Hero Photo */}
+                <div className="mb-10 rounded-2xl overflow-hidden aspect-[16/7] relative">
+                  <img
+                    src="/gallery/catering.jpg"
+                    alt="Eula Mae's Catering spread"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A0A00]/60 via-transparent to-transparent flex items-end p-6">
+                    <p className="font-serif text-white text-xl italic">"Where every event feels like family."</p>
+                  </div>
+                </div>
 
                 <SectionHeader title="Breakfast" />
                 <div className="grid sm:grid-cols-2 gap-x-12">

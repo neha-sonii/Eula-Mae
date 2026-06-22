@@ -197,12 +197,13 @@ export default function Home() {
 
           <div className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6">
             {[
-              { title: "Chicken Tender Dinner", desc: "Golden crispy hand-breaded chicken tenders with dipping sauce", price: "$14", img: "/dishes/chicken-tenders.png" },
-              { title: "Ribeye Sandwich", desc: "Thick ribeye steak sandwich on toasted brioche bun, melted cheese", price: "$18", img: "/dishes/ribeye-sandwich.png" },
-              { title: "Hamburger Steak", desc: "Smothered hamburger steak with rich onion gravy, mashed potatoes", price: "$15", img: "/dishes/hamburger-steak.png" },
-              { title: "Fried Cheese Balls", desc: "Golden fried cheese balls, pulling apart showing melted cheese", price: "$8", img: "/dishes/cheese-balls.png" },
-              { title: "Key Lime Pie", desc: "Slice of key lime pie with whipped cream, tart lime curd", price: "$7", img: "/dishes/key-lime-pie.png" },
-              { title: "Fresh Biscuits", desc: "Golden fluffy Southern biscuits with apple butter, steam rising", price: "$4", img: "/dishes/biscuits.png" },
+              { title: "Fried Cheese Balls", desc: "Golden fried cheese balls with a gooey pepper jack center. Served with our signature marinara.", price: "$7", img: "/dishes/cheese-balls-real.jpg" },
+              { title: "Hamburger Steak", desc: "Smothered in rich mushroom onion gravy. Served with two sides.", price: "$10", img: "/dishes/hamburger-steak-real.jpg" },
+              { title: "Wings", desc: "Crispy fried wings hand tossed in your choice of sauce — HOT, BBQ, Lemon Pepper, Garlic Parm, and more.", price: "$9", img: "/dishes/wings-real.jpg" },
+              { title: "Fresh Biscuits", desc: "Homemade biscuits served warm with house-made jam and apple butter.", price: "$4", img: "/dishes/biscuits-real.jpg" },
+              { title: "Spring Salad", desc: "Spring mix with strawberries, blackberries, feta, and raspberry vinaigrette. Add grilled chicken.", price: "$5", img: "/dishes/spring-salad.jpg" },
+              { title: "Red Velvet Cake", desc: "Individual round of homemade red velvet with rich cream cheese frosting.", price: "$5", img: "/dishes/red-velvet.jpg" },
+              { title: "Chicken Salad & Pimento Cheese", desc: "Homemade chicken salad and pimento cheese served with crackers, tomato, and pickles.", price: "$7", img: "/dishes/chicken-pimento.jpg" },
             ].map((dish, i) => (
               <motion.div 
                 key={i}
@@ -229,6 +230,54 @@ export default function Home() {
         
         <div className="mt-16 md:mt-24">
           <CardinalDivider />
+        </div>
+      </section>
+
+      {/* Lunch Specials Section */}
+      <section className="py-16 md:py-20 px-4 sm:px-6 bg-[#1A0A00]">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-serif text-3xl md:text-4xl lg:text-5xl text-white mb-3"
+            >
+              Daily Lunch Specials
+            </motion.h2>
+            <p className="font-serif italic text-[#F5EFE0]/60 text-lg">Mon – Fri · 11am – 2pm</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              { day: "Monday", item: "Ribeye Sandwich", note: "with Fries and Drink", price: "$11" },
+              { day: "Tuesday", item: "6oz Hamburger Steak", note: "with Fries and Drink", price: "$9" },
+              { day: "Wednesday", item: "Chicken Salad or Pimento Cheese", note: "with Crackers and Drink", price: "$7" },
+              { day: "Friday", item: "Chicken Tender Snack", note: "with Fries and Drink", price: "$8" },
+            ].map((special, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="flex items-center gap-5 bg-white/5 border border-white/10 hover:border-[#C8392B]/40 rounded-xl p-5 transition-colors"
+              >
+                <div className="shrink-0 bg-[#C8392B] text-white text-xs font-bold tracking-widest uppercase px-3 py-1.5 rounded-lg text-center min-w-[80px]">
+                  {special.day}
+                </div>
+                <div className="flex-1">
+                  <p className="font-serif font-bold text-white text-lg leading-snug">{special.item}</p>
+                  <p className="text-[#F5EFE0]/50 text-sm">{special.note}</p>
+                </div>
+                <div className="text-[#C8392B] font-bold text-xl shrink-0">{special.price}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <CardinalDivider light />
         </div>
       </section>
 
@@ -305,8 +354,13 @@ export default function Home() {
             {[
               { src: "/gallery/panoramic.jpg", alt: "Dining room panoramic view" },
               { src: "/gallery/event-table.jpg", alt: "Elegant holiday table setting" },
+              { src: "/gallery/atmosphere.jpg", alt: "Café atmosphere with string lights" },
+              { src: "/gallery/event-room.jpg", alt: "Private event room with fireplace" },
               { src: "/gallery/dining.jpg", alt: "Dining room with welcome sign" },
+              { src: "/gallery/private-dining.jpg", alt: "Private dining with antler chandeliers" },
+              { src: "/gallery/wall-decor.jpg", alt: "Good food · Good friends · Good times" },
               { src: "/gallery/entrance.jpg", alt: "Rustic café entrance" },
+              { src: "/gallery/catering.jpg", alt: "Eula Mae's catering spread" },
               { src: "/gallery/team.jpg", alt: "The Eula Mae's team" },
               { src: "/gallery/kitchen.jpg", alt: "Interior with kitchen bar" },
               { src: "/gallery/beverage.jpg", alt: "Beverage station" },
