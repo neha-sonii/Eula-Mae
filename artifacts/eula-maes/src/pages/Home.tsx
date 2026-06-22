@@ -120,10 +120,16 @@ export default function Home() {
   };
 
   const reviews = [
-    { name: "Travis", text: "Best food in town. The chicken tenders are hand-breaded and come with the best dipping sauce. My kids ask to come here every week.", color: "#C8392B", img: "/gallery/dining.jpg" },
-    { name: "Clint", text: "Gary and his team hosted our 40-person party without a hitch. The ribeye sandwich is unreal. Food was out fast and everything was hot.", color: "#6B4C2A", img: "/gallery/event-table.jpg" },
-    { name: "Emily", text: "The mason jar cheesecake is worth the trip alone. Everything tastes homemade because it is. This place is a treasure for Alexander City.", color: "#A62F24", img: "/gallery/entrance.jpg" },
-    { name: "John", text: "Came in on a Tuesday for lunch and it felt like a Sunday dinner at grandma's. The biscuits with apple butter are incredible. Highly recommend.", color: "#4A3019", img: "/gallery/kitchen.jpg" }
+    { name: "Reign", text: "This place is a hidden gem tucked away in Alex City. The food is delicious — Southern cuisine done right. The cheese balls were wonderful with the spicy marinara. The ribeye sandwich was very good. The chef Gary came out to check on us and offered warm conversation. I will be back again for sure.", img: "/gallery/dining.jpg" },
+    { name: "Travis Chiasson", text: "My wife and I ate here twice during our stay in Alexander City. The atmosphere was cozy and homey. The owner, his wife and staff were very friendly. The filet mignon was incredible. The atmosphere, service and food quality were exceptional — we will be back!", img: "/gallery/event-table.jpg" },
+    { name: "Emily Oliver", text: "Me and my fiancé heard about this place and tried it out — it became our new favorite spot!! The service was wonderful. They were extremely friendly and made it feel like home. The food was great and the atmosphere very beautiful.", img: "/gallery/entrance.jpg" },
+    { name: "John Phillips", text: "What a treat at Eula Mae's! The spring salad was fresh and delicious, as was the hamburger steak and hand-breaded chicken fingers with okra. The tiny biscuits with apple butter and homemade preserves were a perfect way to begin our meal. This is a special place filled with love.", img: "/gallery/kitchen.jpg" },
+    { name: "Jayelle Kaye", text: "I have dined here a lot since their opening. It is mine and my kids' favorite place to eat!! The wings are cooked perfect every time. The spring salad is refreshing. They are very attentive when it comes to waiting on you!!", img: "/gallery/beverage.jpg" },
+    { name: "Clint Chappell", text: "This place was absolutely awesome! They accommodated us on short notice for a 40-person Christmas party, and everything turned out fantastic. The food, service, and atmosphere were all top-notch. Huge thank you to the staff and owners.", img: "/gallery/panoramic.jpg" },
+    { name: "Kevin Parrish", text: "Great locally owned spot. The owner came around and talked with us. He even gave us a bite of their pork chops — really good. Our server was very kind and attentive. She even sent us home with some extra fresh baked biscuits. You can really tell that they care.", img: "/gallery/atmosphere.jpg" },
+    { name: "Leigh Gross", text: "We have eaten here several times and always look forward to the next visit. Love the food and the atmosphere. Very friendly staff and the owners are personable. Highly recommend adding this to your shop-local rotation.", img: "/gallery/wall-decor.jpg" },
+    { name: "Steve Youde, KW Capital Realty", text: "Eula Mae's is the finest restaurant with the finest people and the finest food in Alexander City. The atmosphere is quaint and creative. The owner Gary and his wife Melissa put so much care into everything they do. You owe it to yourself to come here.", img: "/gallery/event-room.jpg" },
+    { name: "Avery Johnson", text: "All of it is just so wonderful and the people who run it take good care of their guests. When me and my group came in they said 'We want y'all to eat with us so we will figure something out.' Such lovely people who make incredible homemade food and an unforgettable dining experience.", img: "/gallery/private-dining.jpg" },
   ];
 
   return (
@@ -298,15 +304,15 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory pb-8 -mx-4 px-4 sm:-mx-6 sm:px-6 md:mx-0 md:px-0 md:pb-0 md:overflow-visible">
+          <div className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide snap-x snap-mandatory pb-8 -mx-4 px-4 sm:-mx-6 sm:px-6">
             {reviews.map((review, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.6 }}
-                className="bg-[#FFF8EC] p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow min-w-[85vw] sm:min-w-[300px] md:min-w-0 snap-start flex flex-col"
+                transition={{ delay: Math.min(i * 0.06, 0.4), duration: 0.5 }}
+                className="bg-[#FFF8EC] p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow flex-none w-[88vw] sm:w-[380px] snap-start flex flex-col"
               >
                 <div className="text-[#C8392B] tracking-widest text-lg mb-4">
                   ★★★★★

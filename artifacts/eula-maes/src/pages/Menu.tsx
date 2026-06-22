@@ -88,7 +88,7 @@ const SidesBox = () => (
   <div className="border border-[#6B4C2A]/30 rounded-xl p-6 mt-8">
     <h4 className="font-serif text-xl text-[#1A0A00] mb-4 text-center tracking-wide uppercase text-sm font-bold">Sides</h4>
     <div className="grid grid-cols-2 gap-x-8 gap-y-1 text-[#6B4C2A] text-sm">
-      {['Fries','Green Beans','Roasted Potatoes','Okra','Macaroni & Cheese','Baked Beans','Salad (House or Spring)'].map(s => (
+      {['Fries','Green Beans','Roasted Potatoes','Okra','Baked Beans','Salad (House or Spring)'].map(s => (
         <span key={s} className="py-0.5">{s}</span>
       ))}
     </div>
@@ -304,8 +304,6 @@ export default function Menu() {
                   <MenuItem name="Peanut Butter Pie" price="$5.00" />
                   <MenuItem name="Dessert Trio" price="$15.00" desc="Choice of any three: key lime, red velvet, or tiramisu." />
                   <MenuItem name="Homemade Fried Apple or Pecan Pies" price="Market" />
-                  <MenuItem name="Homemade Strawberry Cake" price="Market" />
-                  <MenuItem name="Homemade Pound Cake" price="Market" />
                 </div>
 
                 <BeveragesBox />
@@ -357,15 +355,33 @@ export default function Menu() {
                   </div>
                 </div>
 
+                <SectionHeader title="Salads" />
+                <div className="grid sm:grid-cols-2 gap-x-12">
+                  <div>
+                    {['Spring Salad','House Salad'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                </div>
+
                 <SectionHeader title="Entrees" />
                 <div className="grid sm:grid-cols-2 gap-x-12">
                   <div>
-                    {['Chicken Tenders (Grilled or Fried)','Wings','Mini Ribeye Sandwiches','Cheeseburgers','Hamburgers','BBQ'].map(item => (
+                    {['Chicken Tenders (Grilled or Fried)','Chicken Alfredo','Wings','Mini Ribeye Sandwiches','Cheeseburgers','Hamburgers','BBQ'].map(item => (
                       <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
                     ))}
                   </div>
                   <div>
                     {['Filets','Ribeyes','Pork Chops','Hamburger Steak','Shrimp Boil'].map(item => (
+                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
+                    ))}
+                  </div>
+                </div>
+
+                <SectionHeader title="Sides" />
+                <div className="grid sm:grid-cols-2 gap-x-12">
+                  <div>
+                    {['Macaroni & Cheese','Green Beans','Roasted Potatoes','Okra','Fries','Baked Beans'].map(item => (
                       <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
                     ))}
                   </div>
