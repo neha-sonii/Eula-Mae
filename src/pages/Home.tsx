@@ -734,7 +734,7 @@ export default function Home() {
             <a href="#" className="text-[#F5EFE0]/60 hover:text-[#C8392B] transition-colors">
               <SiInstagram size={24} />
             </a>
-            <a href="#" className="text-[#F5EFE0]/60 hover:text-[#C8392B] transition-colors">
+            <a href="https://www.facebook.com/profile.php?id=61579043976499" className="text-[#F5EFE0]/60 hover:text-[#C8392B] transition-colors">
               <SiFacebook size={24} />
             </a>
           </div>
