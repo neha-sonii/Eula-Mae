@@ -40,6 +40,8 @@ export const Gallery = () => (
               alt={img.alt}
               className="w-full object-cover transform group-hover:scale-105 transition-transform duration-500"
               loading="lazy"
+              width={800}
+              height={600}
             />
           </div>
         ))}
