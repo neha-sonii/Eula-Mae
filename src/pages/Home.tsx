@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { EulaLogo } from "@/components/EulaLogo";
 import { useLocation } from "wouter";
+import OptimizedImage from "@/components/OptimizedImage";
 
 const CardinalDivider = memo(({ className = "", light = false }: { className?: string; light?: boolean }) => (
   <div className={`flex items-center justify-center w-full py-8 ${className}`}>
@@ -274,7 +275,7 @@ export default function Home() {
                 className="bg-[#FFF8EC] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex-none w-[75vw] sm:w-[320px] lg:w-[340px] snap-start flex flex-col"
               >
                 <div className="w-full aspect-[4/3] relative overflow-hidden bg-[#6B4C2A]/10">
-                  <img src={dish.img} alt={dish.title} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
+                  <OptimizedImage src={dish.img} alt={dish.title} className="absolute inset-0 w-full h-full object-cover object-center" loading="lazy" />
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-2">
@@ -504,7 +505,7 @@ export default function Home() {
             ].map((img, i) => (
               <div key={i} className="break-inside-avoid relative rounded-xl overflow-hidden group">
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 duration-300" />
-                <img 
+                <OptimizedImage 
                   src={img.src} 
                   alt={img.alt}
                   className="w-full object-cover transform group-hover:scale-105 transition-transform duration-500" 

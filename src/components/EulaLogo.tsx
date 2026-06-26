@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import OptimizedImage from "@/components/OptimizedImage";
 
 interface EulaLogoProps {
   variant?: "light" | "dark";
@@ -15,7 +16,7 @@ export function EulaLogo({ variant = "light", size = "md", className }: EulaLogo
 
   return (
     <div className={cn("flex flex-col items-center justify-center", sizeClasses[size], className)}>
-      <img 
+      <OptimizedImage 
         src="/favicon-logo.png" 
         alt="Eula Mae's Cafe" 
         className="w-full h-auto"

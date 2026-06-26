@@ -4,6 +4,7 @@ import { SiInstagram, SiFacebook } from "react-icons/si";
 import { Menu as MenuIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EulaLogo } from "@/components/EulaLogo";
+import OptimizedImage from "@/components/OptimizedImage";
 import { useLocation } from "wouter";
 
 const Navbar = () => {
@@ -54,6 +55,7 @@ const Navbar = () => {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            layout
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -144,6 +146,7 @@ export default function Menu() {
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#6B4C2A] via-[#1A0A00] to-[#1A0A00]" />
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <motion.h1
+            layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="font-serif text-5xl md:text-6xl lg:text-[80px] leading-tight tracking-wide mb-4"
@@ -151,6 +154,7 @@ export default function Menu() {
             Our Menu
           </motion.h1>
           <motion.p
+            layout
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
@@ -189,6 +193,7 @@ export default function Menu() {
       <div className="container mx-auto px-4 sm:px-6 py-12 md:py-20 max-w-3xl">
         <AnimatePresence mode="wait">
           <motion.div
+            layout
             key={activeTab}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -322,7 +327,7 @@ export default function Menu() {
 
                 {/* Catering Hero Photo */}
                 <div className="mb-10 rounded-2xl overflow-hidden aspect-[16/7] relative">
-                  <img
+                  <OptimizedImage
                     src="/gallery/catering.jpg"
                     alt="Eula Mae's Catering spread"
                     className="w-full h-full object-cover object-center"
