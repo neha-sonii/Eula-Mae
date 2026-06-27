@@ -205,17 +205,17 @@ export default function Home() {
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="font-serif text-white text-4xl sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.1] tracking-wide mb-6"
           >
-            Quality Food,<br/>Cooked with love.
+            Made with love,<br/>Just like mama would.
           </motion.h1>
           
-          <motion.p 
+          {/* <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="text-[#F5EFE0] text-base md:text-xl font-medium tracking-wide mb-10"
           >
             Made with love just like mumma would.
-          </motion.p>
+          </motion.p> */}
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
