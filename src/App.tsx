@@ -2,6 +2,7 @@ import { Switch, Route, Router as WouterRouter} from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Suspense, lazy as ReactLazy } from "react";
+import { Analytics } from "@vercel/analytics/next"
 const NotFound = ReactLazy(() => import("@/pages/not-found"));
 const Home = ReactLazy(() => import("@/pages/Home"));
 const Menu = ReactLazy(() => import("@/pages/Menu"));
@@ -27,6 +28,7 @@ function App() {
         <Router />
       </WouterRouter>
       <Toaster />
+      <Analytics />
     </TooltipProvider>
   );
 }
