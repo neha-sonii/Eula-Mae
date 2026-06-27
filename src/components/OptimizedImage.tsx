@@ -5,8 +5,8 @@ interface OptimizedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
 }
 
 const OptimizedImage: React.FC<OptimizedImageProps> = ({ src, ...props }) => {
-  // Always add /public prefix for assets
-  const normalizedSrc = src.startsWith('/') ? `/public${src}` : src;
+  // Don't add /public prefix - Vite serves public folder assets at root path
+  const normalizedSrc = src;
   const hasExtension = /\.(png|jpg|jpeg|webp)$/.test(normalizedSrc);
   
   // Ensure width and height are always set to prevent layout shifts
