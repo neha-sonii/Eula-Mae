@@ -324,7 +324,7 @@ export default function Menu() {
             {/* ── CATERING ── */}
             {activeTab === 'catering' && (
               <div>
-                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">Events, parties, and gatherings — big or small. Call us to plan yours.</p>
+                <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">At Eula Mae’s, we love bringing your ideas to the table. If you don’t see what you’re looking for, call us and let’s create the perfect menu for your event.</p>
 
                 {/* Catering Hero Photo */}
                 <div className="mb-10 rounded-2xl overflow-hidden aspect-[16/7] relative">
