@@ -39,7 +39,7 @@ export const Hero = () => (
         transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
         className="text-[#F5EFE0] text-base md:text-xl font-medium tracking-wide mb-10"
       >
-        The flavors of home, the warmth of family, and the legacy of Eula Mae.
+        Made with love just like mumma would.
       </motion.p>
 
       <motion.div

@@ -249,7 +249,8 @@ export default function Menu() {
                   <MenuItem name="Wing & Chicken Tender Combo" price="$14.00" desc="5 Wings and 3 Tenders with fries and your choice of sauce." />
                   <MenuItem name="Ribeye Sandwich" price="$12.00" desc="Tender marbled ribeye served on a brioche bun." />
                   <MenuItem name="Cheeseburger / Hamburger" price="$12.00" desc="2.3 OZ Handmade patties served with melted American cheese, fresh lettuce, onion, and tomato." note="+ Add homemade pimento cheese $2.00" />
-                  <MenuItem name="Hamburger Steak" price="$10 / $13" desc="6 OZ or 8 OZ Ground beef patty served with brown gravy and sautéed onions." />
+                  <MenuItem name="Hamburger Steak 6 OZ" price="$10" desc="6 OZ Ground beef patty served with brown gravy and sautéed onions." />
+                  <MenuItem name="Hamburger Steak 8 OZ" price="$13" desc="8 OZ Ground beef patty served with brown gravy and sautéed onions." />
                 </div>
 
                 <BeveragesBox />
