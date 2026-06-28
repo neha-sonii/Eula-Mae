@@ -41,6 +41,7 @@ export const Navbar = () => {
           <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
           <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
           <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
+          <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Catering</button>
           <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-5 py-2 rounded-full transition-colors">Reserve</button>
         </div>
 
@@ -61,6 +62,7 @@ export const Navbar = () => {
             <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
             <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
             <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
+            <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Catering</button>
             <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-6 py-2.5 rounded-full transition-colors">Reserve</button>
           </motion.div>
         )}

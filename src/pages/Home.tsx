@@ -118,6 +118,7 @@ const Navbar = () => {
           <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
           <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
           <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
+          <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Catering</button>
           <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-5 py-2 rounded-full transition-colors">Reserve</button>
         </div>
 
@@ -138,6 +139,7 @@ const Navbar = () => {
             <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
             <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
             <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Menu</button>
+            <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Catering</button>
             <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-6 py-2.5 rounded-full transition-colors">Reserve</button>
           </motion.div>
         )}
@@ -199,10 +201,18 @@ export default function Home() {
         <div className="absolute inset-0 z-0 bg-black/70" />
         
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center mt-16">
-          <motion.h1 
+          <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
+            className="mb-6"
+          >
+            <span className="inline-block border-2 border-[#C8392B] text-white text-xs tracking-widest uppercase px-4 py-2 rounded-full bg-transparent">Now Booking Catering Events</span>
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="font-serif text-white text-4xl sm:text-5xl md:text-6xl lg:text-[80px] leading-[1.1] tracking-wide mb-6"
           >
             Made with love,<br/>Just like mama would.

@@ -46,6 +46,7 @@ const Navbar = () => {
           <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
           <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
           <button onClick={() => handleNav('menu')} className="text-[#C8392B]">Menu</button>
+          <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Catering</button>
           <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-5 py-2 rounded-full transition-colors">Reserve</button>
         </div>
         <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
@@ -65,6 +66,7 @@ const Navbar = () => {
             <button onClick={() => handleNav('story')} className="hover:text-[#C8392B] transition-colors">Our Story</button>
             <button onClick={() => handleNav('reviews')} className="hover:text-[#C8392B] transition-colors">Reviews</button>
             <button onClick={() => handleNav('menu')} className="text-[#C8392B]">Menu</button>
+            <button onClick={() => handleNav('menu')} className="hover:text-[#C8392B] transition-colors">Catering</button>
             <button onClick={() => handleNav('reserve')} className="bg-[#C8392B] hover:bg-[#A62F24] text-white px-6 py-2.5 rounded-full transition-colors">Reserve</button>
           </motion.div>
         )}
@@ -324,6 +326,7 @@ export default function Menu() {
             {/* ── CATERING ── */}
             {activeTab === 'catering' && (
               <div>
+                {/* <h2 className="font-serif text-4xl md:text-5xl text-[#1A0A00] mb-4">Now Booking Catering Events</h2> */}
                 <p className="font-serif italic text-[#6B4C2A] text-lg mb-8">At Eula Mae’s, we love bringing your ideas to the table. If you don’t see what you’re looking for, call us and let’s create the perfect menu for your event.</p>
 
                 {/* Catering Hero Photo */}
@@ -398,78 +401,11 @@ export default function Menu() {
                   </div>
                 </div>
 
-                <SectionHeader title="Desserts" />
-                <div className="grid sm:grid-cols-2 gap-x-12">
-                  <div>
-                    {['Key Lime Pie','Red Velvet','Tiramisu','Peanut Butter Pie'].map(item => (
-                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
-                    ))}
-                  </div>
-                  <div>
-                    {['Homemade Fried Apple or Pecan Pies','Homemade Strawberry Cake','Homemade Pound Cake'].map(item => (
-                      <div key={item} className="py-3 border-b border-[#6B4C2A]/10 font-serif text-[#1A0A00]">{item}</div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-12 bg-[#1A0A00] rounded-2xl p-8 text-center text-white">
-                  <h3 className="font-serif text-2xl md:text-3xl mb-3">Planning an event?</h3>
-                  <p className="text-[#F5EFE0]/80 mb-6 font-serif italic">We'd love to be a part of it. Give us a call to talk through the details.</p>
-                  <a href="tel:2563924999" className="inline-block bg-[#C8392B] hover:bg-[#A62F24] text-white rounded-full px-8 py-4 text-lg font-medium tracking-wide transition-all shadow-md hover:shadow-lg">
-                    📞 (256) 392-4999
-                  </a>
-                </div>
               </div>
             )}
-
           </motion.div>
         </AnimatePresence>
-
-        <div className="text-center pt-20 pb-4">
-          <p className="font-serif italic text-[#6B4C2A] text-lg mb-6">Can't decide? Let us surprise you.</p>
-          <Button
-            onClick={() => {
-              setLocation('/');
-              setTimeout(() => {
-                const el = document.getElementById('reserve');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }, 100);
-            }}
-            size="lg"
-            className="bg-[#C8392B] hover:bg-[#A62F24] text-white w-full sm:w-auto rounded-full px-10 py-7 text-lg font-medium tracking-wide transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
-          >
-            Reserve Your Table <span className="ml-2 font-serif text-xl">→</span>
-          </Button>
-        </div>
       </div>
-
-      {/* Footer */}
-      <footer className="bg-[#1A0A00] py-16 px-6 text-[#F5EFE0] text-center border-t border-[#6B4C2A]/20">
-        <div className="container mx-auto flex flex-col items-center">
-          <div className="mb-8">
-            <EulaLogo variant="light" size="md" />
-          </div>
-          <div className="text-[#F5EFE0]/80 space-y-2 mb-8 text-lg">
-            <p>110 Calhoun St, Suite 105</p>
-            <p>Alexander City, AL 35010</p>
-            <p>(256) 392-4999</p>
-          </div>
-          <p className="font-serif italic text-[#6B4C2A] text-xl mb-10 max-w-md">
-            "Named for a woman who cooked with her whole heart."
-          </p>
-          <div className="flex space-x-6 mb-12">
-            <a href="#" className="text-[#F5EFE0]/60 hover:text-[#C8392B] transition-colors">
-              <SiInstagram size={24} />
-            </a>
-            <a href="#" className="text-[#F5EFE0]/60 hover:text-[#C8392B] transition-colors">
-              <SiFacebook size={24} />
-            </a>
-          </div>
-          <div className="text-[#F5EFE0]/40 text-sm">
-            © {new Date().getFullYear()} Eula Mae's. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
