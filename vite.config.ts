@@ -2,11 +2,15 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { visualizer } from "rollup-plugin-visualizer";
+import sitemap from 'vite-plugin-sitemap'
 import path from "path";
 
 export default defineConfig({
   plugins: [
     react(),
+     sitemap({
+      hostname: 'https://www.eula-maes.com'
+    }),
     tailwindcss(),
     visualizer({
       filename: 'stats.html',
