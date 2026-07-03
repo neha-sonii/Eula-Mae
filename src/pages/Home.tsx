@@ -317,6 +317,7 @@ export default function Home() {
               Daily Lunch Specials
             </motion.h2>
             <p className="font-serif italic text-[#F5EFE0]/60 text-lg">Mon – Fri · 11am – 2pm</p>
+            <p className="font-serif text-[#C8392B]/60 text-lg">Thursday Closed</p>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4">
@@ -626,7 +627,7 @@ export default function Home() {
                   <h4 className="font-bold mb-2">Hours</h4>
                   <p>Lunch: Mon–Fri 11:00am – 2:00pm</p>
                   <p>Dinner: Mon–Fri 4:30pm – 9:00pm</p>
-                  <p className="text-[#C8392B] font-medium">Saturday & Sunday Closed</p>
+                  <p className="text-[#C8392B] font-medium">Saturday, Thursday & Sunday Closed</p>
                 </div>
                 
                 <div>
