@@ -30,8 +30,8 @@ export const Reserve = () => (
             <Input id="name" placeholder="John Doe" className="bg-white/10 border-white/20 text-white" />
           </div>
           <div>
-            <Label htmlFor="phone" className="text-white/80 mb-2 block">Phone</Label>
-            <Input id="phone" type="tel" placeholder="(123) 456-7890" className="bg-white/10 border-white/20 text-white" />
+            <Label htmlFor="phone" className="text-white/80 mb-2 block">Phone <span className="text-[#E6A822]">*</span></Label>
+            <Input id="phone" type="tel" placeholder="(123) 456-7890" required className="bg-white/10 border-white/20 text-white" />
           </div>
           <div>
             <Label htmlFor="date" className="text-white/80 mb-2 block">Date</Label>
