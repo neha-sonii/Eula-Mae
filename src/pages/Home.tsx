@@ -704,6 +704,10 @@ export default function Home() {
                   <Input id="size" name="size" type="number" min="1" required className="mt-2 bg-[#F5EFE0] border-transparent focus-visible:ring-[#C8392B]" />
                 </div>
                 <div>
+                  <Label htmlFor="phone" className="text-[#1A0A00]">Phone Number</Label>
+                  <Input id="phone" name="phone" type="tel" required className="mt-2 bg-[#F5EFE0] border-transparent focus-visible:ring-[#C8392B]" />
+                </div>
+                <div>
                   <Label htmlFor="date" className="text-[#1A0A00]">Preferred Date & Time</Label>
                   <Input id="date" name="date" required className="mt-2 bg-[#F5EFE0] border-transparent focus-visible:ring-[#C8392B]" />
                 </div>
